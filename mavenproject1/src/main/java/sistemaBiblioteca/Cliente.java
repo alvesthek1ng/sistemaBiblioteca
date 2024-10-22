@@ -19,7 +19,31 @@ public class Cliente {
         return nome;
     }
     
-    public String setNome(){
-        return nome;
+    public String getEmail(){
+        return email;
+    }
+    
+    public int getId(){
+        return id;
+    }
+    
+    public String getTelefone(){
+        return telefone;
+    }
+    
+    public void setNome(String nome){
+        this.nome = nome;
+    }
+    
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public void setTelefone(String telefone) {
+        this.telefone = telefone;
     }
 }
