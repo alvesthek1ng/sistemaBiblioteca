@@ -14,7 +14,7 @@ public class Cliente {
         this.id = id;
         this.telefone = telefone;
     }
-    
+    // Criei os metodos get
     public String getNome(){
         return nome;
     }
@@ -23,24 +23,13 @@ public class Cliente {
         return email;
     }
     
-    public int getId(){
-        return id;
-    }
-    
     public String getTelefone(){
         return telefone;
     }
     
-    public void setNome(String nome){
-        this.nome = nome;
-    }
-    
+    // Criei os metodos set
     public void setEmail(String email) {
         this.email = email;
-    }
-
-    public void setId(int id) {
-        this.id = id;
     }
 
     public void setTelefone(String telefone) {
