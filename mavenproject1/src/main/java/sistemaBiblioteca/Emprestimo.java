@@ -13,5 +13,16 @@ public class Emprestimo {
         return titulo;
     }
   
-  
+    // classe para emprestimo de livros
+    class Emprestimo {
+        private Cliente cliente;
+        private Livro livro;
+        private LocalDate dataEmprestimo;
+
+        public Emprestimo(Cliente cliente, Livro livro) {
+            this.cliente = cliente;
+            this.livro = livro;
+            this.dataEmprestimo = LocalDate.now()
+        }
+    }
 }  
