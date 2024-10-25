@@ -16,9 +16,9 @@ public class Livro {
         this.id = id;
         this.anoPublicacao = anoPublicacao;
         this.numExemplares = numExemplares;
-        
-        
-    //Metodos Get
+    }
+    
+        //Metodos Get
     public String getTitulo() {
         return titulo;
     }
@@ -35,4 +35,4 @@ public class Livro {
         return numExemplares;
     }
 }
-}
+
