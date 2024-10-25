@@ -17,8 +17,8 @@ public class Livro {
         this.anoPublicacao = anoPublicacao;
         this.numExemplares = numExemplares;
     }
-    
-        //Metodos Get
+
+    //Metodos Get
     public String getTitulo() {
         return titulo;
     }
@@ -34,5 +34,17 @@ public class Livro {
     public int getNumExemplares() {
         return numExemplares;
     }
-}
 
+    //metodo Set
+    public void setTitulo(String titulo) {
+
+    }
+
+    public void setAutor(String autor) {
+        this.autor = autor;
+    }
+
+    public void setNumExemplares(int numExemplares) {
+        this.numExemplares = numExemplares;
+    }
+}
