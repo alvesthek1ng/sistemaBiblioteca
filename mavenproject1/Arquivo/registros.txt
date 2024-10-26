@@ -1,0 +1,6 @@
+Informações do empestimo: 
+data emprestrimo
+kjkdata devoluçao
+kjInformaçoes do cliente :
+Cliente{, id=12nome='kj', email='kjk', telefone='kjk'}Informaçoes do livro :
+Cliente{, id ='1TItulo='kj', autor='lk', AnoPublicacao'lk', NumExemplares'1'}
