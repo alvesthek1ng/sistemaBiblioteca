@@ -18,8 +18,18 @@ public class Livro {
         this.anoPublicacao = anoPublicacao;
         this.numExemplares = numExemplares;
     }
+    
+    // metodo get para retornar o id 
+    
+    public int getId(){
+        return id;
+    }
    
     //metodo Set
+    
+    public void setId(int id){
+        this.id = id;
+    }
             
     public void setTitulo(String titulo) {
         this.titulo = titulo;
