@@ -38,7 +38,17 @@ public class Emprestimo {
      
     @Override
     public String toString(){
-        return "Cliente " + cliente + "nome do livro" + livro+ "data emprestrimo" +dataEmprestimo+ "data devoluçao" + dataDevolucao;
+        return "Informações do empestimo: \n"
+                +  "data emprestrimo\n"
+                +dataEmprestimo
+                + "data devoluçao\n"
+                + dataDevolucao
+                + "Informaçoes do cliente :\n"
+                + cliente
+                +"Informaçoes do livro :\n"
+                + livro; 
+                
+                 
                 
     }   
 }  
