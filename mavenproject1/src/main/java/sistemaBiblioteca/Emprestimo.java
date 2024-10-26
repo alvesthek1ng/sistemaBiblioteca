@@ -1,28 +1,40 @@
 package sistemaBiblioteca;
 
 public class Emprestimo {
-    private String titulo;
-    private String autor;
+    private String dataDevolucao;
+    private String dataEmprestimo;
+    private Cliente cliente; 
+    private Livro livro;
     
-    public Emprestimo(String titulo, String autor) {
-        this.titulo = titulo;
-        this.autor = autor;
+    //metodo construtor 
+    public Emprestimo(String dataDevolucao, String dataEmprestimo, Cliente cliente, Livro livro) {
+        this.dataEmprestimo = dataEmprestimo;
+        this.dataDevolucao = dataDevolucao;
+        this.cliente = cliente;
+        this.livro = livro;
     }
-
-    public String getTitulo() {
-        return titulo;
+    
+    //metodo get
+    public String getDataEmprestimo(){
+        return dataEmprestimo;
     }
   
-    // classe para emprestimo de livros
-    class Emprestimo {
-        private Cliente cliente;
-        private Livro livro;
-        private LocalDate dataEmprestimo;
-
-        public Emprestimo(Cliente cliente, Livro livro) {
-            this.cliente = cliente;
-            this.livro = livro;
-            this.dataEmprestimo = LocalDate.now()
-        }
+    //metodo set
+    public String setDataEmprestimo(){
+        this.dataEmprestimo = dataEmprestimo;
+        return null;
     }
+    
+    
+    public String getDataDevolucao(){
+        return dataDevolucao;
+    }
+    
+     public String setDataDevolucao(){
+         this.dataDevolucao = dataDevolucao;    
+        return null;
+    }
+    
+    
+    
 }  
