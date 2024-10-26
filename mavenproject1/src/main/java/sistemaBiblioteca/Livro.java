@@ -1,5 +1,6 @@
 package sistemaBiblioteca;
 
+
 public class Livro {
 
     //criando os atributos
@@ -17,9 +18,9 @@ public class Livro {
         this.anoPublicacao = anoPublicacao;
         this.numExemplares = numExemplares;
     }
-
-
+   
     //metodo Set
+            
     public void setTitulo(String titulo) {
         this.titulo = titulo;
     }
@@ -27,7 +28,7 @@ public class Livro {
     public void setAutor(String autor) {
         this.autor = autor;
     }
-    
+
     public void setAnoPublicacao(String AnoPublicacao) {
         this.anoPublicacao = anoPublicacao;
     }
@@ -36,5 +37,15 @@ public class Livro {
         this.numExemplares = numExemplares;
     }
     
-    
+    @Override
+    public String toString(){
+        return "Cliente{"
+                + ", id ='" + id 
+                +"TItulo='" + titulo + '\''
+                + ", autor='" + autor + '\''
+                + ", AnoPublicacao'" + anoPublicacao +'\''
+                + ", NumExemplares'" + numExemplares +'\''
+                +'}';
+        
+    }
 }
