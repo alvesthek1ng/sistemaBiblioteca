@@ -9,7 +9,7 @@ public class Cliente {
     private String telefone;
 
     // Método construtor da classe cliente
-    public Cliente(String nome, String email, int id) {
+    public Cliente(String nome, String email, String telefone, int id) {
         this.nome = nome;
         this.email = email;
         this.id = id;
