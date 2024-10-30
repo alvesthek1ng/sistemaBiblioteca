@@ -15,10 +15,15 @@ public class Cliente {
         this.id = id;
         this.telefone = telefone;
     }
-
+    // cria contrutor vazio
+    public Cliente(){}
+    
     // Criei os metodos get
     public String getNome() {
         return nome;
+    }
+    public int getIdCliente(){
+        return id;
     }
 
     public String getEmail() {
@@ -46,7 +51,7 @@ public class Cliente {
     
     @Override
     public String toString() {
-        return "Cliente{"
+        return " Informacoes do cliente :"
                 + ", id=" + id
                 + "nome='" + nome + '\''
                 + ", email='" + email + '\''
