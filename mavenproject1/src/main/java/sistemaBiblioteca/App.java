@@ -7,22 +7,38 @@ import java.util.Scanner;
 
 public class App {
 
-    // função para salvar os dados do emprestimo
-    public static boolean salvarDados(Emprestimo emprestimo) {
+    // função para salvar os dados 
+    public static boolean salvarTudo(Livro[] livros, Cliente[] clientes, Emprestimo[] emprestimos) {
         try {
             FileWriter arquivo = new FileWriter("./Arquivo/registros.txt", true);
             PrintWriter pw = new PrintWriter(arquivo);
-            pw.println(emprestimo);
+            pw.println("Lista de Livros:");
+            for (Livro livro : livros) {
+                if (livro != null) {
+                    pw.println(livro);
+                }
+            }
+            pw.println("Lista de Clientes:");
+            for (Cliente cliente : clientes) {
+                if (cliente != null) {
+                    pw.println(cliente);
+                }
+            }
+            pw.println("Lista de Empréstimos:");
+            for (Emprestimo emprestimo : emprestimos) {
+                if (emprestimo != null) {
+                    pw.println(emprestimo);
+                }
+            }
             pw.close();
             arquivo.close();
             return true;
         } catch (Exception e) {
-            System.out.println("erro : " + e.getMessage());
+            System.out.println("Erro ao salvar dados: " + e.getMessage());
             return false;
         }
     }
-
-    // função para cadastar os livro, caso haja espaço no array 
+        // função para cadastar os livro, caso haja espaço no array 
     public static boolean cadastrarLivro(Livro novoLivro, Livro[] livros) {
         for (int i = 0; i < livros.length; i++) {
             if (livros[i] == null) {
@@ -38,9 +54,8 @@ public class App {
         try {
             System.out.println("Título:");
             String titulo = scanner.nextLine();
-            System.out.println("Autor:"); 
+            System.out.println("Autor:");
             String autor = scanner.nextLine();
-            scanner.nextLine();// consome a linha em branco 
             System.out.println("Id:");
             int id = scanner.nextInt();
             scanner.nextLine();// consome a linha em branco 
@@ -53,7 +68,7 @@ public class App {
             Livro novoLivro = new Livro(titulo, autor, id, anoPublicacao, numExemplares);
             if (cadastrarLivro(novoLivro, livros)) {
                 System.out.println("Livro cadastrado com sucesso!");
-               
+
             } else {
                 System.out.println("Não foi possível cadastrar o livro. Array cheio.");
             }
@@ -64,7 +79,7 @@ public class App {
 
         }
     }
-    
+
     // função para cadastar os clientes 
     public static boolean cadastrarCliente(Cliente novoCliente, Cliente[] clientes) {
         for (int i = 0; i < clientes.length; i++) {
@@ -78,14 +93,14 @@ public class App {
 
     // função para emprestimo de livro
     public static boolean EmprestimoLivro(Cliente cliente, String dataEmprestimo, String dataDevolucao, Livro livro, Emprestimo[] emprestimos) {
-        Emprestimo novoEmprestimo = new Emprestimo(dataEmprestimo,dataDevolucao, cliente, livro, true);
-             for (int i = 0; i < emprestimos.length; i++) {
+        Emprestimo novoEmprestimo = new Emprestimo(dataEmprestimo, dataDevolucao, cliente, livro);
+        for (int i = 0; i < emprestimos.length; i++) {
             if (emprestimos[i] == null) {
                 emprestimos[i] = novoEmprestimo;
                 return true;
             }
         }
-        return false;   
+        return false;
     }
 
     // Se a funçao conseguir encontrar o livro devolve e retorna verdadeiro se nao retorna false
@@ -124,18 +139,17 @@ public class App {
     public static void realizarEmprestimo(Livro[] livros, Cliente[] clientes, Emprestimo[] emprestimos, Scanner scanner) {
         System.out.println("Número de Identificação do Cliente:");
         int idCliente = scanner.nextInt();
+        scanner.nextLine();
         System.out.println("ID do Livro:");
         int idLivro = scanner.nextInt();
+        scanner.nextLine();
         System.out.println("Data do emprestimo:");
         String dataEmprestimo = scanner.nextLine();
-         System.out.println("Data da devolucao:");
+        System.out.println("Data da devolucao:");
         String dataDevolucao = scanner.nextLine();
-        
 
         Cliente cliente = new Cliente();
         Livro livro = new Livro();
-        
-        
 
         // Verifica se o cliente existe
         for (Cliente cli : clientes) {
@@ -156,17 +170,17 @@ public class App {
             return;
         }
 
-        if (livro.getId()== 0) {
+        if (livro.getId() == 0) {
             System.out.println("Livro não disponível.");
             return;
         }
         // Realiza o empréstimo
-        Emprestimo novoEmprestimo = new Emprestimo(dataEmprestimo, dataDevolucao, cliente, livro, true);
+        Emprestimo novoEmprestimo = new Emprestimo(dataEmprestimo, dataDevolucao, cliente, livro);
         for (int i = 0; i < emprestimos.length; i++) {
             if (emprestimos[i] == null) {
                 emprestimos[i] = novoEmprestimo;
                 livro.setNumExemplares(livro.getnumExemplares() - 1);
-                System.out.println("Empréstimo realizado com sucesso!");
+                System.out.println("Empréstimo realizado com sucesso! id do emprestimo :" + novoEmprestimo.getId());
                 break;
             }
         }
@@ -183,7 +197,7 @@ public class App {
             System.out.println("Número de Identificação:");
             int id = scanner.nextInt();
             scanner.nextLine();
-            Cliente novoCliente = new Cliente(nome, email,telefone, id);
+            Cliente novoCliente = new Cliente(nome, email, telefone, id);
             if (cadastrarCliente(novoCliente, clientes)) {
                 System.out.println("Cliente cadastrado com sucesso!");
             } else {
@@ -194,7 +208,8 @@ public class App {
             scanner.next();
         }
     }
-            // Função para devolver livro
+    // Função para devolver livro
+
     public static void devolverLivro(Emprestimo[] emprestimos, Livro[] livros, Scanner scanner) {
         System.out.println("ID do Empréstimo:");
         int idEmprestimo = scanner.nextInt();
@@ -206,6 +221,7 @@ public class App {
                     if (l != null && l.getId() == emp.getLivro().getId()) {
                         l.setNumExemplares(l.getnumExemplares() + 1);
                         emp.setAtivo(false); // Marca o empréstimo como inativo
+                        emp.limparDados();// limpa os dados do emprestimo 
                         System.out.println("Livro devolvido com sucesso!");
                         return;
                     }
@@ -214,23 +230,28 @@ public class App {
         }
         System.out.println("Empréstimo não encontrado ou já inativo.");
     }
-        public static void listarLivrosDisponiveis(Emprestimo[] emprestimos) {
-        System.out.println("Listagem de Livros:");
+// Função para listar os emprestimos ativos 
+
+    public static void listarLivrosEmprestados(Emprestimo[] emprestimos) {
+        System.out.println("Listagem de Livros emprestados:");
         for (Emprestimo emprestimo : emprestimos) {
             if (emprestimo != null && emprestimo.Ativo()) {
-                System.out.println(emprestimo);
+                System.out.println("ID do Empréstimo: " + emprestimo.getId()
+                        + ", Livro: " + emprestimo.getLivro().titulo
+                        + ", Cliente: " + emprestimo.getCliente().getNome()
+                        + ", Data do Empréstimo: " + emprestimo.getDataEmprestimo());
             }
         }
     }
-
+// Função principal onde esta alocado o menu e chamando as funçoes para realizar as funcionalidades
 
     public static void main(String[] args) {
-
+// inicializaçao dos arrays
         Scanner scanner = new Scanner(System.in);
         Livro[] livros = new Livro[100];
         Cliente[] clientes = new Cliente[100];
         Emprestimo[] emprestimos = new Emprestimo[100];
-
+// estrutura de repetiçao iterativa do menu
         while (true) {
             try {
                 System.out.println("Menu Principal");
@@ -243,6 +264,8 @@ public class App {
                 System.out.println("7. Ver Empréstimos Ativos");
                 System.out.println("8. Salvar");
                 System.out.println("9. Sair");
+                System.out.println("------------------------------");
+                System.out.println("                               ");
 
                 int opcao = scanner.nextInt();
                 scanner.nextLine();
@@ -255,11 +278,11 @@ public class App {
                         break;
                     case 3:
                         // 
-                        realizarEmprestimo(livros,clientes,emprestimos,scanner);
+                        realizarEmprestimo(livros, clientes, emprestimos, scanner);
                         break;
                     case 4:
                         // 
-                        devolverLivro(emprestimos,livros,scanner);
+                        devolverLivro(emprestimos, livros, scanner);
                         break;
                     case 5:
                         // 
@@ -271,14 +294,12 @@ public class App {
                         break;
                     case 7:
                         // 
-                        listarLivrosDisponiveis(emprestimos);
+                        listarLivrosEmprestados(emprestimos);
                         break;
-                        
+
                     case 8:
-                        for (Emprestimo emprestimo : emprestimos){
-                         salvarDados(emprestimo);   
-                        }
-                        
+
+                        salvarTudo(livros,clientes,emprestimos);
                         break;
                     case 9:
                         System.out.println("Saindo...");
@@ -286,7 +307,7 @@ public class App {
                     default:
                         System.out.println("Opção inválida, tente novamente.");
                 }
-                //
+                // testa a entrada e exibe mensagem 
             } catch (InputMismatchException e) {
                 System.out.println("Entrada inválida! Por favor, insira um número.");
                 scanner.next(); // Limpa a entrada inválida
