@@ -13,11 +13,11 @@ public class Livro {
     public Livro(String titulo, String autor, int id, String anoPublicacao, int numExemplares) {
         this.titulo = titulo;
         this.autor = autor;
-        this.idLivro = idLivro;
+        this.idLivro = id;
         this.anoPublicacao = anoPublicacao;
         this.numExemplares = numExemplares;
     }
-    // cria contrutor vazio
+    // cria contrutor
     public Livro(){}
 
     // metodo get para retornar o id 
@@ -32,7 +32,7 @@ public class Livro {
     //metodo Set
     
     public void setId(int id) {
-        this.idLivro = idLivro;
+        this.idLivro = id;
     }
         public void getnumExemplares(int numExemplares) {
         this.numExemplares = numExemplares ;
@@ -45,7 +45,7 @@ public class Livro {
         this.autor = autor;
     }
 
-    public void setAnoPublicacao(String AnoPublicacao) {
+    public void setanoPublicacao(String anoPublicacao) {
         this.anoPublicacao = anoPublicacao;
     }
 
@@ -55,12 +55,12 @@ public class Livro {
 
     @Override
     public String toString() {
-        return "informaçoes do livro :{"
-                + ", id ='" + idLivro
-                + "TItulo='" + titulo + '\''
-                + ", autor='" + autor + '\''
-                + ", AnoPublicacao'" + anoPublicacao + '\''
-                + ", NumExemplares'" + numExemplares + '\''
+        return "Livro :{\n"
+                + " Id: " + idLivro + ",\n"
+                + " Título:'" + titulo + "',\n"
+                + " Autor:'" + autor + "',\n"
+                + " Ano de publicação:'" + anoPublicacao + "',\n"
+                + "Númenro de exemplares:'" + numExemplares +"',\n"
                 + '}';
 
     }
