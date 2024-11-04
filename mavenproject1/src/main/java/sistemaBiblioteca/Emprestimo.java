@@ -1,76 +1,81 @@
 package sistemaBiblioteca;
 
 public class Emprestimo {
+
     private String dataDevolucao;
     private String dataEmprestimo;
-    private Cliente cliente; 
-    private Livro livro;
-    private int id; 
+    private  Cliente cliente;
+    private  Livro livro;
+    private int id;
+    private static int contador = 0;
     private boolean ativo;
-    
+
     //metodo construtor 
-    public Emprestimo(String dataDevolucao, String dataEmprestimo, Cliente cliente, Livro livro, boolean ativo) {
+    public Emprestimo(String dataEmprestimo,String dataDevolucao, Cliente cliente, Livro livro) {
         this.dataEmprestimo = dataEmprestimo;
         this.dataDevolucao = dataDevolucao;
         this.cliente = cliente;
         this.livro = livro;
         this.ativo = true;
+        this.id = contador++; // incrementa o contador e atribui valor no id de emprestimo
     }
-    
+
     //metodo get
-    
-    public int getId(){
+    public int getId() {
         return id;
     }
-    public Livro getLivro(){
+
+    public Livro getLivro() {
         return livro;
     }
-    public Cliente getCliente(){
+
+    public Cliente getCliente() {
         return cliente;
     }
-    
-    public String getDataEmprestimo(){
+
+    public String getDataEmprestimo() {
         return dataEmprestimo;
     }
-      public boolean Ativo() {
-        return ativo;
-    }
-    //metodo set
-    public String setDataEmprestimo(){
-        this.dataEmprestimo = dataEmprestimo;
-        return null;
-    }
-    public void setId(int id){
-        this.id = id;
-    }
-    
-    
-    public String getDataDevolucao(){
+
+    public String getdataDevolucao() {
         return dataDevolucao;
     }
-    
-     public String setDataDevolucao(){
-         this.dataDevolucao = dataDevolucao;    
-        return null;
+
+    public boolean Ativo() {
+        return ativo;
     }
-        public void setAtivo(boolean ativo) {
+
+    public void limparDados() {
+        this.dataEmprestimo = null;
+        this.dataDevolucao = null;
+        this.cliente = null;
+        this.livro = null;
+        this.ativo = false;
+    }
+
+    //metodo set
+    public void setdataEmprestimo(String dataEmprestimo) {
+        this.dataEmprestimo = dataEmprestimo;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public void setdataDevolucao(String dataDevolucao) {
+        this.dataDevolucao = dataDevolucao;
+    }
+
+    public void setAtivo(boolean ativo) {
         this.ativo = ativo;
     }
 
-     
     @Override
-    public String toString(){
+    public String toString() {
         return "Informações do empestimo: \n"
-                +  "data emprestrimo\n"
-                +dataEmprestimo
-                + "data devoluçao\n"
-                + dataDevolucao
-                + "Informaçoes do cliente :\n"
-                + cliente
-                +"Informaçoes do livro :\n"
-                + livro; 
-                
-                 
-                
-    }   
-}  
+                + "data emprestrimo :" + dataEmprestimo + "\n"
+                + "data devoluçao : " + dataDevolucao + "\n"
+                + cliente.toString() + "\n"
+                + livro.toString();
+    }
+}
