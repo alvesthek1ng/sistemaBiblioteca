@@ -254,7 +254,9 @@ public class App {
 // estrutura de repetiçao iterativa do menu
         while (true) {
             try {
+                
                 System.out.println("Menu Principal");
+                System.out.println("escolha uma opção");
                 System.out.println("1. Cadastrar Livro");
                 System.out.println("2. Cadastrar Cliente");
                 System.out.println("3. Realizar Empréstimo");
