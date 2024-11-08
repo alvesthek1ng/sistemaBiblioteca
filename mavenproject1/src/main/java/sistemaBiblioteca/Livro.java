@@ -17,7 +17,7 @@ public class Livro {
         this.anoPublicacao = anoPublicacao;
         this.numExemplares = numExemplares;
     }
-    // cria contrutor
+    // cria construtor
     public Livro(){}
 
     // metodo get para retornar o id 
