@@ -38,7 +38,8 @@ public class App {
             return false;
         }
     }
-        // função para cadastar os livro, caso haja espaço no array 
+    // função para cadastar os livro, caso haja espaço no array 
+
     public static boolean cadastrarLivro(Livro novoLivro, Livro[] livros) {
         for (int i = 0; i < livros.length; i++) {
             if (livros[i] == null) {
@@ -80,7 +81,7 @@ public class App {
         }
     }
 
-    // função para cadastar os clientes 
+    // função para percorrer o array de cliente e salvar os dados de cliente 
     public static boolean cadastrarCliente(Cliente novoCliente, Cliente[] clientes) {
         for (int i = 0; i < clientes.length; i++) {
             if (clientes[i] == null) {
@@ -91,7 +92,7 @@ public class App {
         return false;
     }
 
-    // função para emprestimo de livro
+    // função para percorrer o array de emprestimo e salvar os dados coletados de emprestimo
     public static boolean EmprestimoLivro(Cliente cliente, String dataEmprestimo, String dataDevolucao, Livro livro, Emprestimo[] emprestimos) {
         Emprestimo novoEmprestimo = new Emprestimo(dataEmprestimo, dataDevolucao, cliente, livro);
         for (int i = 0; i < emprestimos.length; i++) {
@@ -103,7 +104,7 @@ public class App {
         return false;
     }
 
-    // Se a funçao conseguir encontrar o livro devolve e retorna verdadeiro se nao retorna false
+    //devoluçao, se a funçao conseguir encontrar o livro devolve e retorna verdadeiro se nao retorna false
     public static boolean DevolucaoLivro(int id, Livro[] livros) {
 
         for (int i = 0; i < livros.length; i++) {
@@ -135,7 +136,6 @@ public class App {
         }
     }
     // Função para realizar empréstimo
-
     public static void realizarEmprestimo(Livro[] livros, Cliente[] clientes, Emprestimo[] emprestimos, Scanner scanner) {
         System.out.println("Número de Identificação do Cliente:");
         int idCliente = scanner.nextInt();
@@ -165,6 +165,13 @@ public class App {
                 break;
             }
         }
+        // Verifica se ja existe um emprestimo ativo para o mesmo cliente ou livro
+        for (Emprestimo emp : emprestimos) {
+            if (emp != null && emp.Ativo() && (emp.getCliente().getIdCliente() == idCliente || emp.getLivro().getId() == idLivro)) {
+                System.out.println("Já existe um empréstimo ativo para este cliente ou este livro.");
+                return;
+            }
+        }
         if (cliente.getIdCliente() == 0) {
             System.out.println("Cliente não encontrado.");
             return;
@@ -185,7 +192,7 @@ public class App {
             }
         }
     }
-
+    // Função para cadastro de clientes 
     public static void cadastrarClienteMenu(Scanner scanner, Cliente[] clientes) {
         try {
             System.out.println("Nome:");
@@ -254,7 +261,7 @@ public class App {
 // estrutura de repetiçao iterativa do menu
         while (true) {
             try {
-                
+
                 System.out.println("<Menu Principal>");
                 System.out.println("escolha uma opção abaixo");
                 System.out.println("1. Cadastrar Livro");
@@ -301,7 +308,7 @@ public class App {
 
                     case 8:
 
-                        salvarTudo(livros,clientes,emprestimos);
+                        salvarTudo(livros, clientes, emprestimos);
                         break;
                     case 9:
                         System.out.println("Saindo...");
